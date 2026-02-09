@@ -64,8 +64,8 @@ class HttpClient
          $options['query'] = $query;
       }
 
-      // Make the request
-      $response = $this->client->request($method, $uri, $options);
+      // Make the async request and wait for response
+      $response = $this->client->requestAsync($method, $uri, $options)->wait();
 
       // Return decoded JSON response
       return json_decode($response->getBody(), true);
