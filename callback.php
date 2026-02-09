@@ -97,7 +97,7 @@ function renderResponse($success, $message, $showHomeLink = true)
    </body>
 
    </html>
-   <?php
+<?php
    // End response rendering and exit
    exit;
 }
