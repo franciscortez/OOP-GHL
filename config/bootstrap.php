@@ -16,5 +16,9 @@ require_once __DIR__ . '/../vendor/autoload.php';
 // Load the Config class
 require_once __DIR__ . '/Config.php';
 
+// Load core helper classes
+require_once __DIR__ . '/../core/ViewHelper.php';
+require_once __DIR__ . '/../core/Redirect.php';
+
 // Load environment variables from .env file
 Config::load();
