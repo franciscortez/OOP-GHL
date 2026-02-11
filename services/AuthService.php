@@ -41,7 +41,7 @@ class AuthService
     return "https://marketplace.leadconnectorhq.com/oauth/chooselocation?response_type=code&redirect_uri=" .
       urlencode(Config::get('GHL_REDIRECT_URI')) .
       "&client_id=" . $clientId .
-      "&scope=contacts.write%20contacts.readonly%20locations.readonly%20opportunities.readonly%20opportunities.write" .
+      "&scope=contacts.write%20contacts.readonly%20locations.readonly%20opportunities.readonly%20opportunities.write%20users.readonly" .
       "&version_id=" . $versionId .
       "&state=" . $state;
   }

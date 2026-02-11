@@ -11,39 +11,17 @@
 
 // Load application dependencies
 require_once __DIR__ . '/../config/bootstrap.php';
-require_once __DIR__ . '/../config/Csrf.php';
+require_once __DIR__ . '/BaseApi.php';
 require_once __DIR__ . '/../controller/ContactController.php';
 
-class ContactApi
+class ContactApi extends BaseApi
 {
    private $controller;
-   private $csrfToken;
 
    public function __construct()
    {
+      parent::__construct();
       $this->controller = new ContactController();
-      $this->csrfToken = Csrf::generate();
-   }
-
-   /**
-    * Get CSRF token for forms
-    * 
-    * @return string The CSRF token
-    */
-   public function getCsrfToken()
-   {
-      return $this->csrfToken;
-   }
-
-   /**
-    * Validate CSRF token
-    * 
-    * @param string $token The CSRF token to validate
-    * @return bool True if valid, false otherwise
-    */
-   public function validateCsrf($token)
-   {
-      return Csrf::validate($token);
    }
 
    /**
@@ -139,24 +117,5 @@ class ContactApi
             'message' => $e->getMessage()
          ];
       }
-   }
-
-   /**
-    * Validate contact ID parameter
-    * 
-    * @param string|null $contactId The contact ID to validate
-    * @return array Result with 'valid' boolean and optional 'message' string
-    */
-   public function validateContactId($contactId)
-   {
-      if (!$contactId) {
-         return [
-            'valid' => false,
-            'message' => 'Contact ID is required.'
-         ];
-      }
-      return [
-         'valid' => true
-      ];
    }
 }
